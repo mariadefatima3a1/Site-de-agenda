@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamento - Barbearia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        .horario { margin: 10px 0; padding: 10px; border: 1px solid #000; cursor: pointer; }
+        .disponivel { background-color: #4CAF50; color: white; }
+        .indisponivel { background-color: #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Agendamento de Horários - Barbearia</h1>
+    <div id="agenda" class="container"></div>
+
+    <script>
+        const horarios = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00"];
+        const agenda = document.getElementById('agenda');
+
+        function carregarHorarios() {
+            agenda.innerHTML = '';
+            horarios.forEach(horario => {
+                const div = document.createElement('div');
+                div.className = 'horario disponivel';
+                div.textContent = horario;
+                div.onclick = () => agendarHorario(horario, div);
+                agenda.appendChild(div);
+            });
+        }
+
+        function agendarHorario(horario, elemento) {
+            const nome = prompt(`Confirme seu nome para agendar às ${horario}:`);
+            if (nome) {
+                alert(`Agendamento confirmado para ${nome} às ${horario}`);
+                elemento.classList.remove('disponivel');
+                elemento.classList.add('indisponivel');
+                elemento.onclick = null;
+            }
+        }
+
+        carregarHorarios();
+    </script>
+</body>
+</html>
 
